@@ -711,6 +711,7 @@ I LOVE YOU SO MUCH BUDDHU BABY. 💗</p>
 </footer>
 
 <script>
+  
   // CHANGE THESE NAMES
   const boyfriendName = "Karan baby";
   const yourName = "Mistey";
@@ -723,65 +724,10 @@ I LOVE YOU SO MUCH BUDDHU BABY. 💗</p>
     el.textContent = yourName.trim() || "your person ♡";
   });
 
-  // PHOTO PREVIEW
-  const photoUpload = document.getElementById("photoUpload");
-  const photoCards = document.querySelectorAll(".photo-card");
-  let photoUrls = [];
-
-  photoUpload.addEventListener("change", () => {
-    photoUrls.forEach(URL.revokeObjectURL);
-    photoUrls = [];
-
-    const files = Array.from(photoUpload.files || [])
-      .filter(file => file.type.startsWith("image/"))
-      .slice(0, 3);
-
-    files.forEach((file, index) => {
-      const url = URL.createObjectURL(file);
-      photoUrls.push(url);
-
-      photoCards[index].querySelector("img").src = url;
-
-      photoCards[index].querySelector("p").textContent =
-        file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
-        || "A favourite memory ♡";
-    });
-  });
-
-  // MUSIC PLAYER
-  const musicUpload = document.getElementById("musicUpload");
-  const audioPlayer = document.getElementById("audioPlayer");
-  const musicDisc = document.getElementById("musicDisc");
-  const musicStatus = document.getElementById("musicStatus");
-  let musicUrl = null;
-
-  musicUpload.addEventListener("change", () => {
-    const file = musicUpload.files && musicUpload.files[0];
-    if (!file) return;
-
-    if (musicUrl) URL.revokeObjectURL(musicUrl);
-
-    musicUrl = URL.createObjectURL(file);
-    audioPlayer.src = musicUrl;
-    audioPlayer.hidden = false;
-    musicStatus.textContent = "Selected: " + file.name;
-  });
-
-  audioPlayer.addEventListener("play", () => {
-    musicDisc.classList.add("playing");
-  });
-
-  audioPlayer.addEventListener("pause", () => {
-    musicDisc.classList.remove("playing");
-  });
-
-  audioPlayer.addEventListener("ended", () => {
-    musicDisc.classList.remove("playing");
-  });
-
-  // SECRET SURPRISE + FLOATING HEARTS
+  // SECRET SURPRISE BUTTON
   document.getElementById("surpriseBtn").addEventListener("click", () => {
     const message = document.getElementById("surpriseMessage");
+
     message.classList.add("show");
 
     message.scrollIntoView({
@@ -789,6 +735,7 @@ I LOVE YOU SO MUCH BUDDHU BABY. 💗</p>
       block: "center"
     });
 
+    // FLOATING HEARTS
     for (let i = 0; i < 22; i++) {
       const heart = document.createElement("span");
 
@@ -799,7 +746,7 @@ I LOVE YOU SO MUCH BUDDHU BABY. 💗</p>
 
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = (16 + Math.random() * 20) + "px";
-      heart.style.animationDelay = Math.random() * .8 + "s";
+      heart.style.animationDelay = Math.random() * 0.8 + "s";
 
       document.body.appendChild(heart);
 
